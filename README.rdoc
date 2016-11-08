@@ -10,6 +10,7 @@ Questi i requisiti:
 ----
 * gem install bundler
 * ./bin/bundle install
+* ./bin/rspec spec/
 * ./bin/rails s
 * (browser) http://localhost:3000
   
