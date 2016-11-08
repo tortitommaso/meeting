@@ -27,5 +27,9 @@ class UserRepository
     @deleted_users << OpenStruct.new(name: name, date: Time.zone.now)
   end
 
+  def reset
+    @users = []
+    @deleted_users = []
+  end
 
 end
