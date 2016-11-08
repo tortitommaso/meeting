@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">List of present users:</div>
+      <div class="panel-body">
+        <ul class="list-group">
+        <% @users.each do |user| %>
+          <br>
+          <li class="list-group-item"><%= user.name %> | 
+          <%= link_to 'Destroy', {:controller=>:users,:action=>:destroy, :id=>user.name}, :method=>:delete %>
+          </li>
+        <% end %>
+        </ul>
+        <%= form_tag "/users" do %>
+          <div class="input-group">
+            <%= text_field_tag "name", "", placeholder: "Enter name: ", class: "form-control", required: true %>
+            <span class="input-group-btn">
+              <%= submit_tag "Add" , class: "btn btn-default"%>
+            </span>          
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">List of not present users:</div>
+      <div class="panel-body">
+        <ul class="list-group">
+        <% @deleted_users.each do |user| %>
+          <br>
+          <li class="list-group-item"><%= user.name %> (deleted at: <%=l(user.date) %>)</li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<% if !@users.empty? %>
+  <div class="row">
+    <div class="text-center">
+        <%= form_tag "/users/draw" do %>
+          <%= submit_tag "Pick at Random", class: "btn btn-lg btn-primary"  %>
+        <% end %>
+    </div>
+  </div>
+<% end %>
